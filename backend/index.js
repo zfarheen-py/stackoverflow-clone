@@ -13,6 +13,10 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Serving at http://localhost:${PORT}`)
-})
+const CONNECTION_URl = "mongodb+srv://admin:admin123@stack-overflow-clone.w99uwx8.mongodb.net/?retryWrites=true&w=majority"
+
+mongoose.connect(CONNECTION_URl, { useNewUrlParser:true, useUnifiedTopology: true})
+.then(() => app.listen(PORT, () => {
+  console.log(`Serving running at http://localhost:${PORT}`)
+}))
+.catch((err) => console.log(err.message))
