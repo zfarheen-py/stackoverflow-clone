@@ -5,19 +5,18 @@ import './HomeMainbar.css';
 import QuestionList from './QuestionList';
 
 const HomeMainbar = () => {
-
   const location = useLocation();
   const user = 1;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const questionsList = useSelector((state) => state.questionsReducer);
 
   const checkAuth = () => {
     if (user === null) {
-      alert("login or signup to ask a question");
-      navigate("/Auth");
+      alert('login or signup to ask a question');
+      navigate('/Auth');
     } else {
-      navigate("/AskQuestion");
+      navigate('/AskQuestion');
     }
   };
 
