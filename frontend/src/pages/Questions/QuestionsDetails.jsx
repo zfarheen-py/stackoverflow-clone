@@ -142,7 +142,7 @@ const QuestionsDetails = () => {
                                   } */}
                         </div>
                         <div>
-                          <p>asked {moment(question.time).fromNow()}</p>
+                          <p>asked {moment(question.askedOn).fromNow()}</p>
                           <Link
                             to={`/Users/${question.userId}`}
                             className="user-link"
@@ -177,7 +177,7 @@ const QuestionsDetails = () => {
                       cols="30"
                       rows="10"
                       onChange={(e) => setAnswer(e.target.value)}
-                    ></textarea>{' '}
+                    ></textarea>
                     <br />
                     <input
                       type="submit"
@@ -189,16 +189,14 @@ const QuestionsDetails = () => {
                     Browse other Question tagged
                     {question.questionTags.map((tag) => (
                       <Link to="/Tags" key={tag} className="ans-tags">
-                        {' '}
-                        {tag}{' '}
+                        {tag}
                       </Link>
-                    ))}{' '}
+                    ))}
                     or
                     <Link
                       to="/AskQuestion"
                       style={{ textDecoration: 'none', color: '#009dff' }}
                     >
-                      {' '}
                       ask your own question.
                     </Link>
                   </p>
