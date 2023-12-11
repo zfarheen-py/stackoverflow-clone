@@ -8,6 +8,7 @@ import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswer from './DisplayAnswer';
 import { postAnswer } from '../../actions/question';
 import moment from 'moment';
+import copy from 'copy-to-clipboard';
 
 const QuestionsDetails = () => {
   const { id } = useParams();
@@ -17,8 +18,8 @@ const QuestionsDetails = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const User = useSelector((state) => state.currentUserReducer);
-  // const location = useLocation()
-  // const url = 'http://localhost:5000'
+  const location = useLocation();
+  const url = 'http://localhost:3000';
 
   const handlePostAns = (e, answerLength) => {
     e.preventDefault();
@@ -40,6 +41,11 @@ const QuestionsDetails = () => {
         );
       }
     }
+  };
+
+  const handleShare = () => {
+    copy(url + location.pathname);
+    alert('Copied url : ' + url + location.pathname);
   };
 
   // var questionsList = [{
@@ -132,7 +138,9 @@ const QuestionsDetails = () => {
                       </div>
                       <div className="question-actions-user">
                         <div>
-                          <button type="button">Share</button>
+                          <button type="button" onClick={handleShare}>
+                            Share
+                          </button>
                           <button type="button">Delete</button>
 
                           {/* {
@@ -161,7 +169,11 @@ const QuestionsDetails = () => {
                 {question.noOfAnswers !== 0 && (
                   <section>
                     <h3>{question.noOfAnswers} Answers</h3>
-                    <DisplayAnswer key={question._id} question={question} />
+                    <DisplayAnswer
+                      key={question._id}
+                      question={question}
+                      handleShare={handleShare}
+                    />
                   </section>
                 )}
                 <section className="post-ans-container">

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Avatar from '../../components/Avatar/Avatar';
 import moment from 'moment';
 
-const DisplayAnswer = ({ question }) => {
+const DisplayAnswer = ({ question, handleShare }) => {
   return (
     <div>
       {question.answer.map((ans) => (
@@ -11,7 +11,7 @@ const DisplayAnswer = ({ question }) => {
           <p>{ans.answerBody}</p>
           <div className="question-actions-user">
             <div>
-              <button type="button">Share</button>
+              <button type="button" onClick={handleShare}>Share</button>
               <button type="button">Delete</button>
             </div>
             <div>
