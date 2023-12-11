@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import upvote from '../../assets/sort-up.svg'
 import downvote from '../../assets/sort-down.svg'
 import './Questions.css'
@@ -9,59 +10,60 @@ import moment from 'moment'
 
 const QuestionsDetails = () => {
     const { id } = useParams()
+    const questionsList = useSelector((state) => state.questionsReducer);
 
-      var questionsList = [{
-        _id: '1',
-        upVotes: 3,
-        downVotes: 2,
-        noOfAnswers: 2,
-        questionTitle: "What is a function?", 
-        questionBody: "It meant to be",
-        questionTags: ["java", "node js", "react js", "mongoose"],
-        userPosted: "Nithya", 
-        userId: 1,
-        time: "aug 1",
-        answer: [{
-          answerBody: "Answer",
-          userAnswered: 'shree',
-          answeredOn: "jan 2",
-          userId: 2,
-        }]
-      },{
-        _id: '2', 
-        upVotes: 3,
-        downVotes: 2,
-        noOfAnswers: 0,
-        questionTitle: "What is a function?", 
-        questionBody: "It meant to be",
-        questionTags: ["javascript", "R", "python"],
-        userPosted: "Nithya",
-        userId: 1,
-        time: "aug 1",
-        answer: [{
-          answerBody: "Answer",
-          userAnswered: 'shree',
-          answeredOn: "jan 2",
-          userId: 2,
-        }]
-      },{
-        _id: '3', 
-        upVotes: 3,
-        downVotes: 2,
-        noOfAnswers: 0, 
-        questionTitle: "What is a function?",
-        questionBody: "It meant to be", 
-        questionTags: ["javascript", "R", "python"],
-        userPosted: "Nithya", 
-        time: "aug 1",
-        userId: 1,
-        answer: [{
-          answerBody: "Answer",
-          userAnswered: 'shree',
-          answeredOn: "jan 2",
-          userId: 2,
-        }]
-      }] 
+      // var questionsList = [{
+      //   _id: '1',
+      //   upVotes: 3,
+      //   downVotes: 2,
+      //   noOfAnswers: 2,
+      //   questionTitle: "What is a function?", 
+      //   questionBody: "It meant to be",
+      //   questionTags: ["java", "node js", "react js", "mongoose"],
+      //   userPosted: "Nithya", 
+      //   userId: 1,
+      //   time: "aug 1",
+      //   answer: [{
+      //     answerBody: "Answer",
+      //     userAnswered: 'shree',
+      //     answeredOn: "jan 2",
+      //     userId: 2,
+      //   }]
+      // },{
+      //   _id: '2', 
+      //   upVotes: 3,
+      //   downVotes: 2,
+      //   noOfAnswers: 0,
+      //   questionTitle: "What is a function?", 
+      //   questionBody: "It meant to be",
+      //   questionTags: ["javascript", "R", "python"],
+      //   userPosted: "Nithya",
+      //   userId: 1,
+      //   time: "aug 1",
+      //   answer: [{
+      //     answerBody: "Answer",
+      //     userAnswered: 'shree',
+      //     answeredOn: "jan 2",
+      //     userId: 2,
+      //   }]
+      // },{
+      //   _id: '3', 
+      //   upVotes: 3,
+      //   downVotes: 2,
+      //   noOfAnswers: 0, 
+      //   questionTitle: "What is a function?",
+      //   questionBody: "It meant to be", 
+      //   questionTags: ["javascript", "R", "python"],
+      //   userPosted: "Nithya", 
+      //   time: "aug 1",
+      //   userId: 1,
+      //   answer: [{
+      //     answerBody: "Answer",
+      //     userAnswered: 'shree',
+      //     answeredOn: "jan 2",
+      //     userId: 2,
+      //   }]
+      // }] 
   
   return (
     <div className='question-details-page'>
@@ -70,7 +72,7 @@ const QuestionsDetails = () => {
             <h1>Loading...</h1> :
             <>
                 {
-                    questionsList.filter(question => question._id === id ).map(question => (
+                    questionsList.data.filter(question => question._id === id ).map(question => (
                       <div key={question._id}>
                         <section className='question-details-container'>
                           <h1>{question.questionTitle}</h1>
