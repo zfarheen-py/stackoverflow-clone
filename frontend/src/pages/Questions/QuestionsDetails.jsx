@@ -6,7 +6,7 @@ import downvote from '../../assets/sort-down.svg';
 import './Questions.css';
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswer from './DisplayAnswer';
-import { postAnswer } from '../../actions/question';
+import { postAnswer, deleteQuestion } from '../../actions/question';
 import moment from 'moment';
 import copy from 'copy-to-clipboard';
 
@@ -46,6 +46,10 @@ const QuestionsDetails = () => {
   const handleShare = () => {
     copy(url + location.pathname);
     alert('Copied url : ' + url + location.pathname);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteQuestion(id, Navigate));
   };
 
   // var questionsList = [{
@@ -141,13 +145,11 @@ const QuestionsDetails = () => {
                           <button type="button" onClick={handleShare}>
                             Share
                           </button>
-                          <button type="button">Delete</button>
-
-                          {/* {
-                                    User?.result?._id === question?.userId && (
-                                      <button type='button' >Delete</button>
-                                    )
-                                  } */}
+                          {User?.result?._id === question?.userId && (
+                            <button type="button" onClick={handleDelete}>
+                              Delete
+                            </button>
+                          )}
                         </div>
                         <div>
                           <p>asked {moment(question.askedOn).fromNow()}</p>
