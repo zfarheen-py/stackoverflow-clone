@@ -6,7 +6,11 @@ import downvote from '../../assets/sort-down.svg';
 import './Questions.css';
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswer from './DisplayAnswer';
-import { postAnswer, deleteQuestion } from '../../actions/question';
+import {
+  postAnswer,
+  deleteQuestion,
+  voteQuestion,
+} from '../../actions/question';
 import moment from 'moment';
 import copy from 'copy-to-clipboard';
 
@@ -50,6 +54,14 @@ const QuestionsDetails = () => {
 
   const handleDelete = () => {
     dispatch(deleteQuestion(id, Navigate));
+  };
+
+  const handleUpVote = () => {
+    dispatch(voteQuestion(id, 'upVote', User.result._id));
+  };
+
+  const handleDownVote = () => {
+    dispatch(voteQuestion(id, 'downVote', User.result._id));
   };
 
   // var questionsList = [{
@@ -124,13 +136,15 @@ const QuestionsDetails = () => {
                         alt=""
                         width="18"
                         className="votes-icon"
+                        onClick={handleUpVote}
                       />
-                      <p>{question.upVotes - question.downVotes}</p>
+                      <p>{question.upVote.length - question.downVote.length}</p>
                       <img
                         src={downvote}
                         alt=""
                         width="18"
                         className="votes-icon"
+                        onClick={handleDownVote}
                       />
                     </div>
                     <div style={{ width: '100%' }}>
