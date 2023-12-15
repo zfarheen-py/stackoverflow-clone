@@ -7,7 +7,7 @@ import AskQuestion from './pages/AskQuestion/AskQuestion';
 import DisplayQuestion from './pages/Questions/DisplayQuestion';
 import Tags from './pages/Tags/Tags';
 import Users from './pages/Users/Users';
-import UserProfile from './pages/UserProfile.jsx/UserProfile';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 const AllRoutes = () => {
   return (
