@@ -2,6 +2,8 @@ import React from 'react';
 import './LeftSidebar.css';
 import { NavLink } from 'react-router-dom';
 import Globe from '../../assets/Globe.svg';
+import Tag from '../../assets/Tag.svg';
+import User from '../../assets/User.svg';
 
 const LeftSidebar = () => {
   return (
@@ -28,6 +30,7 @@ const LeftSidebar = () => {
             activeClass="active"
             style={{ paddingLeft: '40px' }}
           >
+            <img src={Tag} alt="Tag" style={{paddingRight: '10px'}} />
             <p>Tags</p>
           </NavLink>
           <NavLink
@@ -36,6 +39,7 @@ const LeftSidebar = () => {
             activeClass="active"
             style={{ paddingLeft: '40px' }}
           >
+            <img src={User} alt="User" style={{paddingRight: '10px'}} />
             <p>Users</p>
           </NavLink>
         </div>
